@@ -44,9 +44,11 @@ I got to work building the movement for the player, the player shots, and the in
 The next morning I had a think and decided to rewrite everything to do with the invaders array and the positions of the invaders on the grid. I had initially made them objects and given them the properties 'position' and 'type' , storing the location of each invader and it's associated ship-type within itself.  In hindsight I probably could have kept it this way, but I was freaking out about my movement function and so I stripped back the array of objects to a more simple integer array, and finished the movement function again. Checked it with one invader, then a fleet, movement looks great, but as soon as a player shot hits one they just bug out again.  At that point I busied myself with getting the score and level displays linked up and made a toggle button to pause the gameplay. I was stumped and then someone pointed out most kindly that I was attempting to reference the wrong object. One pair of deleted brackets later the invaders were marching like redcoats . I made a zigzag sprite and put in the bomb function. Eventually I settled on running the bomb function on the same clock as the invader movement. 
 
 ### Day 6 - Adding the Stretch Goals and More Bugs
-Added cool css background stars. Added a flying saucer attack across the top. Added sounds. Added bugs.
+Added cool css background stars. Added a flying saucer attack across the top. Added sounds. Added bugs. 
 
 ### Day 7 - Presentation 
+Got the bugs fixed and did the game presentation. It was amazing to see the sheer variety and creativity of the cohort, the support and positivity added to the fun of playing games for hours!
+
 Thanks to Tristan, Nick, Simon, Milo and all of the cohort for a wicked fun challenge! 
 
 
