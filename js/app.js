@@ -137,6 +137,7 @@ function advanceInvaders() {
     }
   }
   if (invaders.length === 0) {
+    running = false;
     level += 1;
     gameOverDisplay.innerHTML = `Level ${level} Complete!`;
     levelDisplay.innerText = `Level: ${level}`;
@@ -205,7 +206,7 @@ function takeShot() {
       setTimeout(() => {
         grid[shotPosition].classList.remove('explosion');
       }, 300);
-      clearInterval(saucerID);
+      clearInterval(shotID);
     }
 
     if (grid[shotPosition].classList.contains('shot-remove')) {
@@ -221,7 +222,6 @@ function takeShot() {
       grid[shotPosition].classList.remove('invader');
       grid[shotPosition].classList.add('explosion');
       invaders.splice(invaders.indexOf(shotPosition), 1);
-      console.log(invaders);
       invadersKilled.push(invaders.indexOf(shotPosition));
       if (invadersKilled.length === 22) {
         rightSaucerAttack();
@@ -256,7 +256,6 @@ function takeShot() {
     }
   }
   shotID = setInterval(moveShot, 100);
-  // console.log('shots fired!');
 }
 
 function dropBomb() {
@@ -299,9 +298,11 @@ function dropBomb() {
     bombID = setInterval(moveBomb, 250);
   }
 }
+function resetGame() {
+  location.reload();
+}
 
 function toggleGame(event) {
-  console.log(event);
   if (running) {
     running = false;
     startDisplay.innerText = 'start game';
@@ -317,7 +318,6 @@ function runGame() {
     clearInterval(runGameID);
     return;
   }
-
   advanceInvaders();
   dropBomb();
 }

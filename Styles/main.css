@@ -160,7 +160,7 @@ header {
 } */
 
 html {
-  height: 100%;
+  height: 100vh;
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   overflow: hidden;
 }
@@ -715,7 +715,6 @@ html {
     1067px 296px #fff, 746px 463px #fff, 412px 349px #fff, 1193px 1421px #fff,
     564px 455px #fff, 1675px 589px #fff;
 }
-
 @keyframes animStar {
   from {
     transform: translateY(500px);
