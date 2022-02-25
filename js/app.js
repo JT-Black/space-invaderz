@@ -1,10 +1,11 @@
 // DOM element
-const invaders = [
+const initialInvaders = [
   12, 13, 14, 15, 16, 17, 22, 23, 24, 25, 26, 27, 32, 33, 34, 35, 36, 37, 42,
   43, 44, 45, 46, 47,
 ];
+let invaders = [...initialInvaders];
 const flyingSaucer = [];
-const invadersKilled = [];
+let invadersKilled = [];
 let stepValue = 1;
 let movingRight = true;
 let running = false;
@@ -13,7 +14,7 @@ let level = 1;
 let runGameID;
 let playerPosition = 91;
 const playerDisplay = document.querySelector('.player');
-const grid = [];
+let grid = [];
 const gridDisplay = document.querySelector('.grid');
 const scoreDisplay = document.querySelector('.score');
 scoreDisplay.innerText = `score: ${score}`;
@@ -23,11 +24,13 @@ const startDisplay = document.querySelector('.start');
 let playerShotDisplay = document.querySelector('.shot');
 let invaderShotDisplay = document.querySelector('.invader-shot');
 const gameOverDisplay = document.querySelector('.game-over');
+
 //let intervalID;
 
 function createGrid() {
   for (let i = 0; i < 100; i++) {
     const cell = document.createElement('div');
+    cell.setAttribute('data-id', i);
     if (i >= 0 && i <= 9) {
       cell.classList.add('shot-remove');
     }
@@ -81,6 +84,13 @@ function movePlayer(event) {
     default:
   }
   // addPlayer(playerPosition); // * add player back at the new position
+}
+
+function setupGame() {
+  invadersKilled = [];
+  invaders = [...initialInvaders];
+  movingRight = true;
+  drawInvader();
 }
 // move the invaders
 function clearInvader() {
@@ -137,10 +147,10 @@ function advanceInvaders() {
     }
   }
   if (invaders.length === 0) {
-    running = false;
-    level += 1;
-    gameOverDisplay.innerHTML = `Level ${level} Complete!`;
-    levelDisplay.innerText = `Level: ${level}`;
+    // running = false;
+    // level += 1;
+    // gameOverDisplay.innerHTML = `Level ${level} Complete!`;
+    // levelDisplay.innerText = `Level: ${level}`;
     clearInterval(bombID);
     clearInterval(runGameID);
   }
@@ -262,12 +272,8 @@ function dropBomb() {
   let bombID;
   //bomb half the time
   if (Math.random() < 0.5) {
-    let randomBomber =
-      Math.floor(
-        Math.random() *
-          (invaders[invaders.length - 6] - invaders[invaders.length - 1] + 1)
-      ) + invaders[invaders.length - 1];
-    let bombPosition = randomBomber;
+    let randomBomber = Math.floor(Math.random() * invaders.length);
+    let bombPosition = parseInt(grid[invaders[randomBomber]].dataset.id);
     // move the bombs and clear 'em
     function moveBomb() {
       if (grid[bombPosition].classList.contains('bomb-remove')) {
@@ -333,6 +339,15 @@ drawInvader();
 let intervalTime = 800;
 function runInterval() {
   runGameID = setInterval(() => {
-    runGame();
+    if (invaders.length) {
+      runGame();
+    } else {
+      gameOverDisplay.innerHTML = `Level ${level} Complete!`;
+
+      level++;
+      levelDisplay.innerText = `Level: ${level}`;
+      setupGame();
+      runGame();
+    }
   }, intervalTime);
 }
