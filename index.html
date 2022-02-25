@@ -4,7 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invaderz!</title>
+    <script src="./js/app.js" defer></script>
+    <link rel="stylesheet" href="./styles/main.css" />
+
+    <title>Space Invaders</title>
   </head>
-  <body></body>
+  <body>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div class="background" style="width: 100vw; height: 100vh">
+      <header><img src="./img/big-logo-spce-invaders.png" alt="" /></header>
+      <div class="displays-wrapper background">
+        <div class="score display"></div>
+        <div class="start display">start game</div>
+        <div class="level display"></div>
+      </div>
+
+      <div class="grid-wrapper" id="wrapper">
+        <div class="grid"></div>
+      </div>
+      <div class="game-over"></div>
+    </div>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+  </body>
+  <audio src="./snd/shot.wav" id="shot"></audio>
+  <audio src="./snd/destroyed.wav" id="destroyed"></audio>
+  <audio src="./snd/explosion.wav" id="explosion"></audio>
+  <audio src="./snd/Game over Alien.mp3" id="game-over"></audio>
+  <audio src="./snd/saxon_lik.wav" id="siren"></audio>
 </html>
